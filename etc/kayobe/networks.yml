@@ -7,21 +7,26 @@
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
 #oob_oc_net_name:
+oob_oc_net_name: oc_provision
 
 # Name of the network used by the seed to provision the bare metal overcloud
 # hosts.
 #provision_oc_net_name:
+provision_oc_net_name: oc_provision
 
 # Name of the network used by the overcloud hosts to manage the bare metal
 # compute hosts via their out-of-band management controllers.
 #oob_wl_net_name:
+oob_wl_net_name: oc_provision
 
 # Name of the network used by the overcloud hosts to provision the bare metal
 # workload hosts.
 #provision_wl_net_name:
+provision_wl_net_name: wl_provision
 
 # Name of the network used to expose the internal OpenStack API endpoints.
 #internal_net_name:
+internal_net_name: internal
 
 # List of names of networks used to provide external network access via
 # Neutron.
@@ -42,99 +47,52 @@
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
 #inspection_net_name:
+inspection_net_name: wl_provision
 
 ###############################################################################
 # Network definitions.
 
-# Overcloud out-of-band management network IP information.
-# oob_oc_net_cidr:
-# oob_oc_net_allocation_pool_start:
-# oob_oc_net_allocation_pool_end:
-# oob_oc_net_inspection_allocation_pool_start:
-# oob_oc_net_inspection_allocation_pool_end:
-# oob_oc_net_gateway:
-# oob_oc_net_vlan:
-# oob_oc_net_mtu:
-# oob_oc_net_routes:
+# FIXME: Need IP ranges within this subnet for kayobe & bifrost pools.
 
-# Overcloud provisioning network IP information.
-# provision_oc_net_cidr:
-# provision_oc_net_allocation_pool_start:
-# provision_oc_net_allocation_pool_end:
-# provision_oc_net_inspection_allocation_pool_start:
-# provision_oc_net_inspection_allocation_pool_end:
-# provision_oc_net_gateway:
-# provision_oc_net_vlan:
-# provision_oc_net_mtu:
-# provision_oc_net_routes:
-
-# Workload out-of-band management network IP information.
-# oob_wl_net_cidr:
-# oob_wl_net_allocation_pool_start:
-# oob_wl_net_allocation_pool_end:
-# oob_wl_net_inspection_allocation_pool_start:
-# oob_wl_net_inspection_allocation_pool_end:
-# oob_wl_net_neutron_allocation_pool_start:
-# oob_wl_net_neutron_allocation_pool_end:
-# oob_wl_net_gateway:
-# oob_wl_net_vlan:
-# oob_wl_net_mtu:
-# oob_wl_net_routes:
+# Provisioning network IP information.
+oc_provision_cidr: 10.12.3.0/24
+# Pool for use by kayobe.
+oc_provision_allocation_pool_start: 10.12.3.1
+oc_provision_allocation_pool_end: 10.12.3.127
+# Pool for use by bifrost's dnsmasq service during hardware inspection and
+# provisioning.
+oc_provision_inspection_allocation_pool_start: 10.12.3.128
+oc_provision_inspection_allocation_pool_end: 10.12.3.255
+#oc_provision_net_gateway:
+oc_provision_vlan: 73
+oc_provision_physical_network: "{{ sib_mgmt_physical_network }}"
 
 # Workload provisioning network IP information.
-# provision_wl_net_cidr:
-# provision_wl_net_allocation_pool_start:
-# provision_wl_net_allocation_pool_end:
-# provision_wl_net_inspection_allocation_pool_start:
-# provision_wl_net_inspection_allocation_pool_end:
-# provision_wl_net_neutron_allocation_pool_start:
-# provision_wl_net_neutron_allocation_pool_end:
-# provision_wl_net_gateway:
-# provision_wl_net_vlan:
-# provision_wl_net_mtu:
-# provision_wl_net_routes:
+wl_provision_cidr: 10.12.8.0/24
+# Pool for use by kayobe.
+wl_provision_allocation_pool_start: 10.12.8.2
+wl_provision_allocation_pool_end: 10.12.8.9
+# Pool for use by ironic inspector during hardware inspection.
+wl_provision_inspection_allocation_pool_start: 10.12.8.10
+wl_provision_inspection_allocation_pool_end: 10.12.8.127
+# Pool for use by neutron during baremetal provisioning.
+wl_provision_neutron_allocation_pool_start: 10.12.8.128
+wl_provision_neutron_allocation_pool_end: 10.12.8.254
+wl_provision_vlan: 78
+wl_provision_physical_network: "{{ sib_mgmt_physical_network }}"
 
 # Internal network IP information.
-# internal_net_vip_address:
-# internal_net_fqdn:
-# internal_net_cidr:
-# internal_net_allocation_pool_start:
-# internal_net_allocation_pool_end:
-# internal_net_gateway:
-# internal_net_vlan:
-# internal_net_mtu:
-# internal_net_routes:
+internal_cidr: 10.12.4.0/24
+# Pool for use by kayobe.
+internal_allocation_pool_start: 10.12.4.2
+internal_allocation_pool_end: 10.12.4.255
+internal_vlan: 74
+# VIP address for internal API endpoints.
+internal_vip_address: 10.12.4.1
+internal_physical_network: "{{ sib_mgmt_physical_network }}"
 
-# External network IP information.
-# external_net_vip_address:
-# external_net_fqdn:
-# external_net_cidr:
-# external_net_allocation_pool_start:
-# external_net_allocation_pool_end:
-# external_net_neutron_allocation_pool_start:
-# external_net_neutron_allocation_pool_end:
-# external_net_gateway:
-# external_net_vlan:
-# external_net_mtu:
-# external_net_routes:
-
-# Storage network IP information.
-# storage_net_cidr:
-# storage_net_allocation_pool_start:
-# storage_net_allocation_pool_end:
-# storage_net_gateway:
-# storage_net_vlan:
-# storage_net_mtu:
-# storage_net_routes:
-
-# Storage management network IP information.
-# storage_mgmt_net_cidr:
-# storage_mgmt_net_allocation_pool_start:
-# storage_mgmt_net_allocation_pool_end:
-# storage_mgmt_net_gateway:
-# storage_mgmt_net_vlan:
-# storage_mgmt_net_mtu:
-# storage_mgmt_net_routes:
+# Physical network for the 1G Ethernet management network.
+sib_mgmt_physical_network: physnet1
 
 ###############################################################################
 # Network virtual patch link configuration.
