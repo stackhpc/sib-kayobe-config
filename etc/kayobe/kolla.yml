@@ -96,7 +96,7 @@ kolla_openstack_release: 5.0.3.3-1
 # most commonly packages. The operation should be one of override, append or
 # remove. The value should be a list.
 kolla_build_customizations:
-    neutron_server_footer: |
+  neutron_server_footer: |
     # Need a version of networking generic switch with dell powerconnect support
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.0.0.1
   ironic_inspector_footer: |
