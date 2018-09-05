@@ -1,0 +1,28 @@
+---
+# Switch configuration for ethsw-dell-6224-1.
+
+# This switch is a 1G Dell PowerConnect 6224. It is currently used for all
+# the overcloud networks.
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host:
+
+# The type of switch used for the management network.
+switch_type: dellos6
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config: "{{ switch_config_all }}"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and a 'config' item which should
+# contain a list of per-interface configuration.
+switch_interface_config: {}

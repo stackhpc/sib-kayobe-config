@@ -1,0 +1,17 @@
+---
+# control switch configuration.
+
+###############################################################################
+# Switch credentials.
+
+# User to access the switch via SSH.
+ansible_user: "{{ secrets_switch_ssh_username }}"
+
+# Password to access the switch via SSH.
+ansible_ssh_pass: "{{ secrets_switch_ssh_password }}"
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config_all: []
