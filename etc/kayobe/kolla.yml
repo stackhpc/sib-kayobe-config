@@ -59,6 +59,7 @@ kolla_ansible_source_version: refs/tags/stackhpc/5.0.3.1
 
 # URL of docker registry to use for Kolla images.
 #kolla_docker_registry:
+kolla_docker_registry: "{{ docker_registry }}"
 
 # Docker namespace to use for Kolla images.
 kolla_docker_namespace: sib

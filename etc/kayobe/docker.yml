@@ -25,6 +25,9 @@ docker_storage_driver: overlay
 
 # URL of docker registry
 #docker_registry:
+# This a private docker registry running on the seed, accessed via overcloud
+# provisioning network.
+docker_registry: "{{ provision_oc_net_name | net_ip }}:5000"
 
 # CA of docker registry
 #docker_registry_ca:
