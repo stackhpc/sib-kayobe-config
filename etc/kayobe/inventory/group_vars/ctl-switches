@@ -10,8 +10,149 @@ ansible_user: "{{ secrets_switch_ssh_username }}"
 # Password to access the switch via SSH.
 ansible_ssh_pass: "{{ secrets_switch_ssh_password }}"
 
+# Password authentication is after login.
+switch_auth_pass: "{{ secrets_switch_ssh_password }}"
+
 ###############################################################################
 # Global configuration.
 
 # Global configuration. List of global configuration lines.
-switch_config_all: []
+# Global configuration. List of global configuration lines.
+switch_config_all:
+  - "hostname \"{{ inventory_hostname }}\""
+  - vlan database
+  - "vlan {{ switch_config_vlans | join(',') }}"
+  - "vlan {{ switch_config_vlans2 | join(',') }}"
+  - exit
+
+# List of VLANs configured on these switches.
+switch_config_vlans:
+  - "{{ oc_oob_vlan }}"
+  - "{{ oc_provision_vlan }}"
+  - "{{ wl_oob_vlan }}"
+  - "{{ wl_provision_vlan }}"
+  - "{{ internal_vlan }}"
+  - "{{ storage_vlan }}"
+  - "{{ storagemgmt_vlan }}"
+
+# The ansible role does not handle long lines well, do break the VLAN
+# definition up.
+switch_config_vlans2:
+  - "{{ switch_interface_config_tenant_vlan_range }}"
+  # FIXME: Provider VLAN range currently undecided
+  #- "{{ switch_interface_config_provider_vlan_range }}"
+
+###############################################################################
+# Interface configuration.
+
+# Interface config for overcloud iDRACs.
+switch_interface_config_oc_idrac:
+  - spanning-tree portfast
+  - switchport mode access
+  - "switchport access vlan {{ oc_oob_vlan }}"
+
+# Interface config for workload iDRACs.
+switch_interface_config_wl_idrac:
+  - spanning-tree portfast
+  - switchport mode access
+  - "switchport access vlan {{ wl_oob_vlan }}"
+
+# Tenant VLAN range for this physical network.
+switch_interface_config_tenant_vlan_range: >-
+  {{ kolla_neutron_ml2_network_vlan_ranges |
+     selectattr('physical_network', 'equalto', sib_mgmt_physical_network) |
+     map(attribute='range') |
+     join(',') |
+     replace(':', '-') }}
+
+# Provider VLAN range for this physical network.
+#switch_interface_config_provider_vlan_range: 100-199
+
+# Interface config for controllers.
+switch_interface_config_controller:
+  - spanning-tree portfast
+  - switchport mode general
+  - "switchport general allowed vlan add {{ oc_provision_vlan }} untagged"
+  # Current expect-based configuration mechanism requires no line wrapping, so
+  # VLANs must be configured individually.
+  - "switchport general allowed vlan add {{ wl_oob_vlan }} tagged"
+  - "switchport general allowed vlan add {{ wl_provision_vlan }} tagged"
+  - "switchport general allowed vlan add {{ internal_vlan }} tagged"
+  - "switchport general allowed vlan add {{ storage_vlan }} tagged"
+  - "switchport general allowed vlan add {{ switch_interface_config_tenant_vlan_range }} tagged"
+  # FIXME: provider VLAN range still undecided
+  #- "switchport general allowed vlan add {{ switch_interface_config_provider_vlan_range }} tagged"
+  - "switchport general pvid {{ oc_provision_vlan }}"
+  - lldp optional-tlv port-desc sys-name
+
+# Interface config for monitoring nodes.
+switch_interface_config_monitoring:
+  - spanning-tree portfast
+  - switchport mode general
+  - "switchport general allowed vlan add {{ oc_provision_vlan }} untagged"
+  # Current expect-based configuration mechanism requires no line wrapping, so
+  # VLANs must be configured individually.
+  - "switchport general allowed vlan add {{ internal_vlan }} tagged"
+  - "switchport general pvid {{ oc_provision_vlan }}"
+  - lldp optional-tlv port-desc sys-name
+
+# Interface config for Ceph storage nodes.
+switch_interface_config_ceph:
+  - spanning-tree portfast
+  - switchport mode general
+  - "switchport general allowed vlan add {{ oc_provision_vlan }} untagged"
+  # Current expect-based configuration mechanism requires no line wrapping, so
+  # VLANs must be configured individually.
+  - "switchport general allowed vlan add {{ internal_vlan }} tagged"
+  - "switchport general allowed vlan add {{ storage_vlan }} tagged"
+  - "switchport general allowed vlan add {{ storagemgmt_vlan }} tagged"
+  - "switchport general pvid {{ oc_provision_vlan }}"
+  - lldp optional-tlv port-desc sys-name
+
+# Interface config for virtualised compute hypervisors.
+switch_interface_config_vm_compute:
+  - spanning-tree portfast
+  - switchport mode general
+  - "switchport general allowed vlan add {{ oc_provision_vlan }} untagged"
+  # Current expect-based configuration mechanism requires no line wrapping, so
+  # VLANs must be configured individually.
+  - "switchport general allowed vlan add {{ internal_vlan }} tagged"
+  - "switchport general allowed vlan add {{ storage_vlan }} tagged"
+  - "switchport general allowed vlan add {{ switch_interface_config_tenant_vlan_range }} tagged"
+  # TODO: VLAN range for provider vlans still undecided
+  #- "switchport general allowed vlan add {{ switch_interface_config_provider_vlan_range }} tagged"
+  - "switchport general pvid {{ oc_provision_vlan }}"
+  - lldp optional-tlv port-desc sys-name
+
+# Interface config for bare metal compute nodes.
+switch_interface_config_bm_compute:
+  - spanning-tree portfast
+  - no switchport access vlan
+  - switchport mode general
+  - lldp optional-tlv port-desc sys-name
+
+# Interface config for bare metal compute nodes during hardware discovery.
+switch_interface_config_bm_compute_discovery:
+  # Note: no dedicated inspection network
+  - "switchport general allowed vlan add {{ wl_provision_vlan }} untagged"
+  - "switchport general pvid {{ wl_provision_vlan }}"
+
+###############################################################################
+# Neutron generic switch ML2 mechanism driver configuration.
+
+# Dict containing additional configuration for switches managed by the
+# genericswitch ML2 mechanism driver. For per-switch configuration of switches
+# in kolla_neutron_ml2_generic_switch_hosts, this may be set as a group or
+# host variable for the switch host.
+kolla_neutron_ml2_generic_switch_extra:
+  # The physical networks to which this switch is mapped.
+  ngs_physical_networks: "{{ sib_mgmt_physical_network }}"
+  # Limit the number of concurrent connections to the switch to 5. This setting
+  # aims to provide a trade off between the potential for failures during
+  # concurrent configuration and excessive serialisation of operations that
+  # already take a long time (~20 seconds per port plug/unplug).
+  ngs_max_connections: 5
+  # The baremetal compute nodes use a shared 1G link for the BMC and server.
+  # We put the switch port into general mode, with tagged membership of the
+  # workload BMC network.
+  ngs_switchport_mode: general
