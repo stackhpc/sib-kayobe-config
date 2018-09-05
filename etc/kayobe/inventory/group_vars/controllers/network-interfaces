@@ -2,35 +2,28 @@
 ###############################################################################
 # Network interface definitions for the controller group.
 
-# Overcloud provisioning network IP information.
-# provision_oc_net_interface:
-# provision_oc_net_bridge_ports:
-# provision_oc_net_bond_slaves:
+# Overcloud provisioning network interface.
+oc_provision_interface: breno1
 
-# Workload provisioning network IP information.
-# provision_wl_net_interface:
-# provision_wl_net_bridge_ports:
-# provision_wl_net_bond_slaves:
+# Overcloud provisioning network tagged bridge ports.
+oc_provision_bridge_ports:
+  - eno1
 
-# Internal network IP information.
-# internal_net_interface:
-# internal_net_bridge_ports:
-# internal_net_bond_slaves:
+# Workload OOB network interface.
+wl_oob_interface: "{{ oc_provision_interface }}.{{ wl_oob_vlan }}"
 
-# External network IP information.
-# external_net_interface:
-# external_net_bridge_ports:
-# external_net_bond_slaves:
+# Workload provisioning network interface.
+wl_provision_interface: "{{ oc_provision_interface }}.{{ wl_provision_vlan }}"
 
-# Storage network IP information.
-# storage_net_interface:
-# storage_net_bridge_ports:
-# storage_net_bond_slaves:
+# Internal network interface.
+internal_interface: "{{ oc_provision_interface }}.{{ internal_vlan }}"
 
-# Storage management network IP information.
-# storage_mgmt_net_interface:
-# storage_mgmt_net_bridge_ports:
-# storage_mgmt_net_bond_slaves:
+# Storage network interface
+storage_interface: "{{ oc_provision_interface }}.{{ storage_vlan }}"
+
+# Add Storage Management network interface
+storagemgmt_interface: "{{ oc_provision_interface }}.{{ storagemgmt_vlan }}"
+
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
