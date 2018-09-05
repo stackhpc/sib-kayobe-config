@@ -99,6 +99,9 @@ kolla_build_customizations:
     neutron_server_footer: |
     # Need a version of networking generic switch with dell powerconnect support
     RUN pip install git+https://github.com/stackhpc/networking-generic-switch@stackhpc/1.0.0.1
+  ironic_inspector_footer: |
+    # Install our custom inspector plugins.
+    RUN pip install stackhpc-inspector-plugins==1.1.1
 
 ###############################################################################
 # Kolla-ansible inventory configuration.
