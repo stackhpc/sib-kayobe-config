@@ -1,0 +1,3 @@
+---
+# Don't manage resolv.conf - use the DHCP response from neutron on VSS.
+resolv_is_managed: false
