@@ -39,10 +39,10 @@ internal_net_name: internal
 #public_net_name:
 
 # Name of the network used to carry storage data traffic.
-#storage_net_name:
+storage_net_name: storage
 
 # Name of the network used to carry storage management traffic.
-#storage_mgmt_net_name:
+storage_mgmt_net_name: storagemgmt
 
 # Name of the network used to perform hardware introspection on the bare metal
 # workload hosts.
@@ -90,6 +90,22 @@ internal_vlan: 74
 # VIP address for internal API endpoints.
 internal_vip_address: 10.12.4.1
 internal_physical_network: "{{ sib_mgmt_physical_network }}"
+
+# Storage network IP information.
+storage_cidr: 10.12.5.0/24
+# Pool for use by kayobe.
+storage_allocation_pool_start: 10.12.5.0
+storage_allocation_pool_end: 10.12.5.255
+storage_vlan: 75
+storage_physical_network: "{{ sib_mgmt_physical_network }}"
+
+# Storage management network IP information.
+storagemgmt_cidr: 10.12.6.0/24
+# Pool for use by kayobe.
+storagemgmt_allocation_pool_start: 10.12.6.0
+storagemgmt_allocation_pool_end: 10.12.6.255
+storagemgmt_vlan: 76
+storagemgmt_physical_network: "{{ sib_mgmt_physical_network }}"
 
 # Physical network for the 1G Ethernet management network.
 sib_mgmt_physical_network: physnet1
