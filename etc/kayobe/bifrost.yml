@@ -21,12 +21,21 @@
 
 # List of DIB elements.
 #kolla_bifrost_dib_elements:
+kolla_bifrost_dib_elements:
+  - "devuser"
+  - "disable-selinux"
+  - "enable-serial-console"
+  - "vm"
 
 # DIB init element.
 #kolla_bifrost_dib_init_element:
 
 # DIB environment variables.
 #kolla_bifrost_dib_env_vars:
+kolla_bifrost_dib_env_vars:
+  DIB_CLOUD_INIT_DATASOURCES: "ConfigDrive"
+  DIB_DEV_USER_PASSWORD: "{{ secrets_overcloud_devuser_password }}"
+  DIB_DEV_USER_PWDLESS_SUDO: "yes"
 
 # List of DIB packages to install.
 #kolla_bifrost_dib_packages:
@@ -42,6 +51,9 @@
 
 # List of of inspector processing plugins.
 #kolla_bifrost_inspector_processing_hooks:
+# The system_name_llc plugin included in inspector_processing_hooks is not
+# available in upstream ironic inspector.
+kolla_bifrost_inspector_processing_hooks: "{{ inspector_processing_hooks_default }}"
 
 # Which MAC addresses to add as ports during introspection. One of 'all',
 # 'active' or 'pxe'.
