@@ -1,7 +1,7 @@
 ---
 
 # Whether to enable Yum automatic updates.
-#yum_cron_enabled: false
+yum_cron_enabled: true
 # Command to use for Yum automatic updates.
 #yum_cron_update_cmd: 'security'
 
