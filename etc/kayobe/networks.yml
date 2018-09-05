@@ -7,7 +7,7 @@
 # Name of the network used by the seed to manage the bare metal overcloud
 # hosts via their out-of-band management controllers.
 #oob_oc_net_name:
-oob_oc_net_name: oc_provision
+oob_oc_net_name: oc_oob
 
 # Name of the network used by the seed to provision the bare metal overcloud
 # hosts.
@@ -17,7 +17,7 @@ provision_oc_net_name: oc_provision
 # Name of the network used by the overcloud hosts to manage the bare metal
 # compute hosts via their out-of-band management controllers.
 #oob_wl_net_name:
-oob_wl_net_name: oc_provision
+oob_wl_net_name: wl_oob
 
 # Name of the network used by the overcloud hosts to provision the bare metal
 # workload hosts.
@@ -66,6 +66,19 @@ oc_provision_inspection_allocation_pool_end: 10.12.3.255
 #oc_provision_net_gateway:
 oc_provision_vlan: 73
 oc_provision_physical_network: "{{ sib_mgmt_physical_network }}"
+
+# Overcloud out of band power/management network IP information.
+oc_oob_cidr: 10.12.2.0/16
+oc_oob_vlan: 72
+oc_oob_physical_network: "{{ sib_mgmt_physical_network }}"
+
+# Workload out of band power/management network IP information.
+wl_oob_cidr: 10.12.7.0/16
+# Pool for use by kayobe.
+wl_oob_allocation_pool_start: 10.12.7.0
+wl_oob_allocation_pool_end: 10.12.7.255
+wl_oob_vlan: 77
+wl_oob_physical_network: "{{ sib_mgmt_physical_network }}"
 
 # Workload provisioning network IP information.
 wl_provision_cidr: 10.12.8.0/24
