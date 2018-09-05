@@ -2,6 +2,11 @@
 Kayobe Configuration
 ====================
 
+Kayobe configuration for the SIB BioMedIT prototype OpenStack deployment.
+
+Overview
+========
+
 This repository provides configuration for the `kayobe
 <https://github.com/stackhpc/kayobe>`_ project. It is intended to encourage
 version control of site configuration.
