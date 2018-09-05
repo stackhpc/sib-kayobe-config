@@ -18,7 +18,14 @@ sib-seed
 # OpenStack overcloud.
 
 [baremetal-compute]
-# Add baremetal compute nodes here if required.
+compute-0 ipmi_address=10.12.7.5
+compute-1 ipmi_address=10.12.7.6
+compute-2 ipmi_address=10.12.7.7
+compute-3 ipmi_address=10.12.7.8
+compute-4 ipmi_address=10.12.7.9
+compute-5 ipmi_address=10.12.7.10
+compute-6 ipmi_address=10.12.7.11
+compute-7 ipmi_address=10.12.7.12
 
 [mgmt-switches]
 # Add management network switches here if required.
