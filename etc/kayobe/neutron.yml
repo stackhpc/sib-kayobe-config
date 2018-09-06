@@ -6,7 +6,6 @@
 # defaults will be used.
 kolla_neutron_ml2_mechanism_drivers:
   kolla_neutron_ml2_mechanism_drivers:
-  - mlnx_sdn_assist
   - openvswitch
   - genericswitch
   - l2population
