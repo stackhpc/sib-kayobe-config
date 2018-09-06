@@ -65,7 +65,7 @@ oc_provision_inspection_allocation_pool_start: 10.12.3.128
 oc_provision_inspection_allocation_pool_end: 10.12.3.254
 #oc_provision_net_gateway:
 oc_provision_vlan: 73
-oc_provision_physical_network: "{{ sib_mgmt_physical_network }}"
+oc_provision_physical_network: "{{ sib_ctl_physical_network }}"
 
 # Overcloud out of band power/management network IP information.
 oc_oob_cidr: 10.12.2.0/24
@@ -92,7 +92,7 @@ wl_provision_inspection_allocation_pool_end: 10.12.8.127
 wl_provision_neutron_allocation_pool_start: 10.12.8.128
 wl_provision_neutron_allocation_pool_end: 10.12.8.254
 wl_provision_vlan: 78
-wl_provision_physical_network: "{{ sib_mgmt_physical_network }}"
+wl_provision_physical_network: "{{ sib_ctl_physical_network }}"
 
 # Internal network IP information.
 internal_cidr: 10.12.4.0/24
@@ -102,7 +102,7 @@ internal_allocation_pool_end: 10.12.4.254
 internal_vlan: 74
 # VIP address for internal API endpoints.
 internal_vip_address: 10.12.4.1
-internal_physical_network: "{{ sib_mgmt_physical_network }}"
+internal_physical_network: "{{ sib_ctl_physical_network }}"
 
 # Storage network IP information.
 storage_cidr: 10.12.5.0/24
@@ -110,7 +110,7 @@ storage_cidr: 10.12.5.0/24
 storage_allocation_pool_start: 10.12.5.0
 storage_allocation_pool_end: 10.12.5.254
 storage_vlan: 75
-storage_physical_network: "{{ sib_mgmt_physical_network }}"
+storage_physical_network: "{{ sib_ctl_physical_network }}"
 
 # Storage management network IP information.
 storagemgmt_cidr: 10.12.6.0/24
@@ -118,10 +118,13 @@ storagemgmt_cidr: 10.12.6.0/24
 storagemgmt_allocation_pool_start: 10.12.6.0
 storagemgmt_allocation_pool_end: 10.12.6.254
 storagemgmt_vlan: 76
-storagemgmt_physical_network: "{{ sib_mgmt_physical_network }}"
+storagemgmt_physical_network: "{{ sib_ctl_physical_network }}"
 
-# Physical network for the 1G Ethernet management network.
-sib_mgmt_physical_network: physnet1
+# Physical network for the 1G network.
+sib_ctl_physical_network: physnet1
+
+# Physical network for the 1G management network
+sib_mgmt_physical_network: physnet2
 
 ###############################################################################
 # Network virtual patch link configuration.

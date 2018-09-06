@@ -60,7 +60,7 @@ switch_interface_config_wl_idrac:
 # Tenant VLAN range for this physical network.
 switch_interface_config_tenant_vlan_range: >-
   {{ kolla_neutron_ml2_network_vlan_ranges |
-     selectattr('physical_network', 'equalto', sib_mgmt_physical_network) |
+     selectattr('physical_network', 'equalto', sib_ctl_physical_network) |
      map(attribute='range') |
      join(',') |
      replace(':', '-') }}
@@ -146,7 +146,7 @@ switch_interface_config_bm_compute_discovery:
 # host variable for the switch host.
 kolla_neutron_ml2_generic_switch_extra:
   # The physical networks to which this switch is mapped.
-  ngs_physical_networks: "{{ sib_mgmt_physical_network }}"
+  ngs_physical_networks: "{{ sib_ctl_physical_network }}"
   # Limit the number of concurrent connections to the switch to 5. This setting
   # aims to provide a trade off between the potential for failures during
   # concurrent configuration and excessive serialisation of operations that

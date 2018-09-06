@@ -22,7 +22,7 @@ kolla_neutron_ml2_mechanism_drivers:
 # range: Range of allowed VLANs on this physical network (format <min>:<max>,
 # optional)
 kolla_neutron_ml2_network_vlan_ranges:
-  - physical_network: "{{ sib_mgmt_physical_network }}"
+  - physical_network: "{{ sib_ctl_physical_network }}"
     range: 90:119
 
 # List of Neutron ML2 extention drivers to use.
