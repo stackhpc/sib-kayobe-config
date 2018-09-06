@@ -1,2 +1,4 @@
+oc_oob_ips:
+  sib-seed: 10.12.2.2
 oc_provision_ips:
-  eod-seed: 10.12.3.2
+  sib-seed: 10.12.3.2
