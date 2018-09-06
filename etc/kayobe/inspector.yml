@@ -31,6 +31,7 @@ inspector_processing_hooks_default:
 #inspector_processing_hooks_extra:
 inspector_processing_hooks_extra:
   - system_name_physnet
+  - system_name_llc
   - extra_hardware
 
 # List of of additional inspector processing plugins.
