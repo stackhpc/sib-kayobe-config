@@ -19,6 +19,9 @@ switch_type: dell-powerconnect
 # Global configuration. List of global configuration lines.
 switch_config: "{{ switch_config_all }}"
 
+switch_dell_powerconnect_port_type: ethernet
+switch_dell_powerconnect_enable_privilege_exec: true
+
 ###############################################################################
 # Interface configuration.
 
@@ -26,44 +29,44 @@ switch_config: "{{ switch_config_all }}"
 # dicts. Each dict contains a description item and a 'config' item which should
 # contain a list of per-interface configuration.
 switch_interface_config:
-  gi1/0/1:
+  1/g1:
     description: compute-0
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/2:
+  1/g2:
     description: compute-1
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/3:
+  1/g3:
     description: compute-2
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/4:
+  1/g4:
     description: compute-3
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/5:
+  1/g5:
     description: compute-4
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/6:
+  1/g6:
     description: compute-5
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/7:
+  1/g7:
     description: compute-6
     config: "{{ switch_interface_config_bm_compute }}"
-  gi1/0/8:
+  1/g8:
     description: compute-7
     config: "{{ switch_interface_config_bm_compute }}"
 
-  gi1/0/18:
+  1/g18:
     description: control-0
     config: "{{ switch_interface_config_controller }}"
-  gi1/0/19:
+  1/g19:
     description: hypervisor-0
     config: "{{ switch_interface_config_vm_compute }}"
-  gi1/0/20:
+  1/g20:
     description: ceph-0
     config: "{{ switch_interface_config_ceph }}"
-  gi1/0/21:
+  1/g21:
     description: ceph-1
     config: "{{ switch_interface_config_ceph }}"
-  gi1/0/22:
+  1/g22:
     description: ceph-2
     config: "{{ switch_interface_config_ceph }}"
 
@@ -71,27 +74,27 @@ switch_interface_config:
 # the configuration of these ports. Has the same format as
 # switch_interface_config.
 switch_interface_config_discovery:
-  gi1/0/1:
+  1/g1:
     description: compute-0
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/2:
+  1/g2:
     description: compute-1
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/3:
+  1/g3:
     description: compute-2
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/4:
+  1/g4:
     description: compute-3
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/5:
+  1/g5:
     description: compute-4
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/6:
+  1/g6:
     description: compute-5
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/7:
+  1/g7:
     description: compute-6
     config: "{{ switch_interface_config_bm_compute_discovery }}"
-  gi1/0/8:
+  1/g8:
     description: compute-7
     config: "{{ switch_interface_config_bm_compute_discovery }}"
