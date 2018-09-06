@@ -57,26 +57,26 @@ inspection_net_name: wl_provision
 # Provisioning network IP information.
 oc_provision_cidr: 10.12.3.0/24
 # Pool for use by kayobe.
-oc_provision_allocation_pool_start: 10.12.3.1
+oc_provision_allocation_pool_start: 10.12.3.2
 oc_provision_allocation_pool_end: 10.12.3.127
 # Pool for use by bifrost's dnsmasq service during hardware inspection and
 # provisioning.
 oc_provision_inspection_allocation_pool_start: 10.12.3.128
-oc_provision_inspection_allocation_pool_end: 10.12.3.255
+oc_provision_inspection_allocation_pool_end: 10.12.3.254
 #oc_provision_net_gateway:
 oc_provision_vlan: 73
 oc_provision_physical_network: "{{ sib_mgmt_physical_network }}"
 
 # Overcloud out of band power/management network IP information.
-oc_oob_cidr: 10.12.2.0/16
+oc_oob_cidr: 10.12.2.0/24
 oc_oob_vlan: 72
 oc_oob_physical_network: "{{ sib_mgmt_physical_network }}"
 
 # Workload out of band power/management network IP information.
-wl_oob_cidr: 10.12.7.0/16
+wl_oob_cidr: 10.12.7.0/24
 # Pool for use by kayobe.
 wl_oob_allocation_pool_start: 10.12.7.0
-wl_oob_allocation_pool_end: 10.12.7.255
+wl_oob_allocation_pool_end: 10.12.7.254
 wl_oob_vlan: 77
 wl_oob_physical_network: "{{ sib_mgmt_physical_network }}"
 
@@ -98,7 +98,7 @@ wl_provision_physical_network: "{{ sib_mgmt_physical_network }}"
 internal_cidr: 10.12.4.0/24
 # Pool for use by kayobe.
 internal_allocation_pool_start: 10.12.4.2
-internal_allocation_pool_end: 10.12.4.255
+internal_allocation_pool_end: 10.12.4.254
 internal_vlan: 74
 # VIP address for internal API endpoints.
 internal_vip_address: 10.12.4.1
@@ -108,7 +108,7 @@ internal_physical_network: "{{ sib_mgmt_physical_network }}"
 storage_cidr: 10.12.5.0/24
 # Pool for use by kayobe.
 storage_allocation_pool_start: 10.12.5.0
-storage_allocation_pool_end: 10.12.5.255
+storage_allocation_pool_end: 10.12.5.254
 storage_vlan: 75
 storage_physical_network: "{{ sib_mgmt_physical_network }}"
 
@@ -116,7 +116,7 @@ storage_physical_network: "{{ sib_mgmt_physical_network }}"
 storagemgmt_cidr: 10.12.6.0/24
 # Pool for use by kayobe.
 storagemgmt_allocation_pool_start: 10.12.6.0
-storagemgmt_allocation_pool_end: 10.12.6.255
+storagemgmt_allocation_pool_end: 10.12.6.254
 storagemgmt_vlan: 76
 storagemgmt_physical_network: "{{ sib_mgmt_physical_network }}"
 
