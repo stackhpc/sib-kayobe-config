@@ -2,6 +2,9 @@
 ###############################################################################
 # Network interface definitions for the seed group.
 
+# BMC Management interface
+oc_oob_interface: eth0
+
 # Overcloud provisioning network interface.
 oc_provision_interface: eth1
 # Use DHCP on VSS for this interface.
