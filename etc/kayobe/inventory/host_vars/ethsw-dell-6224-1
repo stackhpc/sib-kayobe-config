@@ -19,8 +19,7 @@ switch_type: dell-powerconnect
 # Global configuration. List of global configuration lines.
 switch_config: "{{ switch_config_all }}"
 
-switch_dell_powerconnect_port_type: ethernet
-switch_dell_powerconnect_enable_privilege_exec: true
+switch_dell_powerconnect_interface_type: ethernet
 
 ###############################################################################
 # Interface configuration.
