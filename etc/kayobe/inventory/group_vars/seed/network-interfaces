@@ -7,8 +7,6 @@ oc_oob_interface: eth0
 
 # Overcloud provisioning network interface.
 oc_provision_interface: eth1
-# Use DHCP on VSS for this interface.
-oc_provision_bootproto: dhcp
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
