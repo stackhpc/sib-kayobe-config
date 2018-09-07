@@ -66,6 +66,7 @@ oc_provision_inspection_allocation_pool_end: 10.12.3.254
 #oc_provision_net_gateway:
 oc_provision_vlan: 73
 oc_provision_physical_network: "{{ sib_ctl_physical_network }}"
+oc_provision_gateway: 10.12.3.1
 
 # Overcloud out of band power/management network IP information.
 oc_oob_cidr: 10.12.2.0/24
