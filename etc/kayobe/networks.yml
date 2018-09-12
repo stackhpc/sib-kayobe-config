@@ -36,7 +36,7 @@ internal_net_name: internal
 #external_net_names:
 
 # Name of the network used to expose the public OpenStack API endpoints.
-#public_net_name:
+public_net_name: public
 
 # Name of the network used to carry storage data traffic.
 storage_net_name: storage
@@ -120,6 +120,18 @@ storagemgmt_allocation_pool_start: 10.12.6.0
 storagemgmt_allocation_pool_end: 10.12.6.254
 storagemgmt_vlan: 76
 storagemgmt_physical_network: "{{ sib_ctl_physical_network }}"
+
+# Public network IP information.
+public_cidr: 10.12.9.0/24
+# Pool for use by kayobe.
+public_allocation_pool_start: 10.12.9.2
+public_allocation_pool_end: 10.12.9.9
+# Pool for use by neutron
+public_neutron_allocation_pool_start: 10.12.9.10
+public_neutron_allocation_pool_end: 10.12.9.254
+public_vip_address: 10.12.9.1
+public_provision_vlan: 79
+public_provision_physical_network: "{{ sib_ctl_physical_network }}"
 
 # Physical network for the 1G network.
 sib_ctl_physical_network: physnet1

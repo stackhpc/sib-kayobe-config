@@ -12,6 +12,9 @@ oc_provision_bridge_ports:
 # Workload OOB network interface.
 wl_oob_interface: "{{ oc_provision_interface }}.{{ wl_oob_vlan }}"
 
+# Public network interface.
+public_interface: "{{ oc_provision_interface }}.{{ public_vlan }}"
+
 # Workload provisioning network interface.
 wl_provision_interface: "{{ oc_provision_interface }}.{{ wl_provision_vlan }}"
 
