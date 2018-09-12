@@ -56,7 +56,7 @@ ipa_build_dib_elements_extra:
 ipa_build_dib_git_elements:
   - repo: "https://github.com/stackhpc/stackhpc-image-elements"
     local: "{{ source_checkout_path }}/stackhpc-image-elements"
-    version: "master"
+    version: "use-https"
     elements_path: "elements"
 
 ###############################################################################
