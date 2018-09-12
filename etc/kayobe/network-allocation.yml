@@ -1,4 +1,45 @@
+internal_ips:
+  ceph-0: 10.12.4.3
+  ceph-1: 10.12.4.4
+  ceph-2: 10.12.4.5
+  control-0: 10.12.4.6
+  hypervisor-0: 10.12.4.2
 oc_oob_ips:
   sib-seed: 10.12.2.2
 oc_provision_ips:
+  ceph-0: 10.12.3.4
+  ceph-1: 10.12.3.5
+  ceph-2: 10.12.3.6
+  control-0: 10.12.3.7
+  hypervisor-0: 10.12.3.3
   sib-seed: 10.12.3.2
+public_ips:
+  ceph-0: 10.12.9.3
+  ceph-1: 10.12.9.4
+  ceph-2: 10.12.9.5
+  control-0: 10.12.9.6
+  hypervisor-0: 10.12.9.2
+storage_ips:
+  ceph-0: 10.12.5.1
+  ceph-1: 10.12.5.2
+  ceph-2: 10.12.5.3
+  control-0: 10.12.5.4
+  hypervisor-0: 10.12.5.0
+storagemgmt_ips:
+  ceph-0: 10.12.6.1
+  ceph-1: 10.12.6.2
+  ceph-2: 10.12.6.3
+  control-0: 10.12.6.4
+  hypervisor-0: 10.12.6.0
+wl_oob_ips:
+  ceph-0: 10.12.7.1
+  ceph-1: 10.12.7.2
+  ceph-2: 10.12.7.3
+  control-0: 10.12.7.4
+  hypervisor-0: 10.12.7.0
+wl_provision_ips:
+  ceph-0: 10.12.8.3
+  ceph-1: 10.12.8.4
+  ceph-2: 10.12.8.5
+  control-0: 10.12.8.6
+  hypervisor-0: 10.12.8.2
