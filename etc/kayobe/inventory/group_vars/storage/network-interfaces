@@ -1,0 +1,20 @@
+---
+###############################################################################
+# Network interface definitions for the storage group.
+
+# Overcloud provisioning network interface.
+oc_provision_interface: eno1
+
+# Internal network interface.
+internal_interface: "{{ oc_provision_interface }}.{{ internal_vlan }}"
+
+# Storage network interface
+storage_interface: "{{ oc_provision_interface }}.{{ storage_vlan }}"
+
+# Add Storage Management network interface
+storagemgmt_interface: "{{ oc_provision_interface }}.{{ storagemgmt_vlan }}"
+
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes
