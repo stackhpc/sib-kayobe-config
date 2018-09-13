@@ -111,6 +111,19 @@ switch_interface_config_ceph:
   - "switchport general pvid {{ oc_provision_vlan }}"
   - lldp transmit-tlv port-desc sys-name
 
+switch_interface_config_trunk_bmcs:
+  - "switchport mode trunk"
+  - "switchport trunk allowed vlan add {{ oc_oob_vlan }}"
+  - "switchport trunk allowed vlan add {{ wl_oob_vlan }}"
+
+# NOTE: the seed node accesses the BMCs from across this link
+# So we need to trunk access to the oc_oob_vlan and oc_provision_vlan
+switch_interface_config_trunk_ext:
+  - "switchport mode trunk"
+  - "switchport trunk allowed vlan add {{ oc_oob_vlan }}"
+  - "switchport trunk allowed vlan add {{ oc_provision_vlan }}"
+  - "switchport trunk allowed vlan add {{ public_vlan }} tagged"
+
 # Interface config for virtualised compute hypervisors.
 switch_interface_config_vm_compute:
   - spanning-tree portfast
