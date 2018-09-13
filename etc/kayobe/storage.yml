@@ -57,14 +57,14 @@ storage_bootstrap_user: centos
 #storage_lvm_groups:
 storage_lvm_groups: 
   - vgname: ceph
-        disks:
-          - /dev/sdb
-          - /dev/sdc
-          - /dev/sdd
-          - /dev/sde
-          - /dev/sdf
-        create: true
-        lvnames: []
+    disks:
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+    create: true
+    lvnames: []
 
 # Default list of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.
