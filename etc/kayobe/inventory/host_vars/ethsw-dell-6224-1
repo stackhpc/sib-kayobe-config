@@ -51,6 +51,9 @@ switch_interface_config:
     description: compute-7
     config: "{{ switch_interface_config_bm_compute }}"
 
+  'ethernet 1/g17':
+    description: powerconnect-2884
+    config: "{{ switch_interface_config_trunk_bmcs }}"
   'ethernet 1/g18':
     description: control-0
     config: "{{ switch_interface_config_controller }}"
@@ -66,6 +69,10 @@ switch_interface_config:
   'ethernet 1/g22':
     description: ceph-2
     config: "{{ switch_interface_config_ceph }}"
+  # NOTE: the seed node accesses the BMCs from across this link
+  'ethernet 1/g24':
+    description: swgenebio
+    config: "{{ switch_interface_config_trunk_ext }}"
 
 # Interface configuration for hardware discovery. After discovery Neutron owns
 # the configuration of these ports. Has the same format as
