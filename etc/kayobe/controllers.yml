@@ -15,6 +15,13 @@ controller_bootstrap_user: centos
 
 # List of default networks to which controller nodes are attached.
 #controller_default_network_interfaces:
+# Modify the default list of networks to remove storage management.
+controller_default_network_interfaces: >
+  {{ [provision_oc_net_name,
+      oob_wl_net_name,
+      provision_wl_net_name,
+      internal_net_name,
+      storage_net_name] | unique | list }}
 
 # List of extra networks to which controller nodes are attached.
 #controller_extra_network_interfaces:
