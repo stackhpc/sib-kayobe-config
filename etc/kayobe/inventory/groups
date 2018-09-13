@@ -36,6 +36,10 @@ controllers
 network
 monitoring
 compute
+storage
+
+[storage]
+# Empty group declaration of storage group
 
 ###############################################################################
 # Docker groups.
