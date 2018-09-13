@@ -133,7 +133,6 @@ switch_interface_config_vm_compute:
   # VLANs must be configured individually.
   - "switchport general allowed vlan add {{ internal_vlan }} tagged"
   - "switchport general allowed vlan add {{ storage_vlan }} tagged"
-  - "switchport general allowed vlan add {{ public_vlan }} tagged"
   - "switchport general allowed vlan add {{ switch_interface_config_tenant_vlan_range }} tagged"
   # TODO: VLAN range for provider vlans still undecided
   #- "switchport general allowed vlan add {{ switch_interface_config_provider_vlan_range }} tagged"
