@@ -5,6 +5,7 @@
 # User with which to access the storages via SSH during bootstrap, in order
 # to setup the Kayobe user account.
 #storage_bootstrap_user:
+storage_bootstrap_user: centos
 
 ###############################################################################
 # Network interface attachments.
@@ -54,6 +55,16 @@
 # List of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.
 #storage_lvm_groups:
+storage_lvm_groups: 
+  - vgname: ceph
+    disks:
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+    create: true
+    lvnames: []
 
 # Default list of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.

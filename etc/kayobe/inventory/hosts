@@ -10,21 +10,28 @@ localhost ansible_connection=local
 # Virtual Machine.
 
 [seed]
-# Add a seed node here if required. This host will provide the Bifrost
-# undercloud.
+# This host will provide the Bifrost undercloud.
+sib-seed
 
 [controllers]
 # Add controller nodes here if required. These hosts will provide the
 # OpenStack overcloud.
 
 [baremetal-compute]
-# Add baremetal compute nodes here if required.
+compute-0 ipmi_address=10.12.7.5
+compute-1 ipmi_address=10.12.7.6
+compute-2 ipmi_address=10.12.7.7
+compute-3 ipmi_address=10.12.7.8
+compute-4 ipmi_address=10.12.7.9
+compute-5 ipmi_address=10.12.7.10
+compute-6 ipmi_address=10.12.7.11
+compute-7 ipmi_address=10.12.7.12
 
 [mgmt-switches]
 # Add management network switches here if required.
 
 [ctl-switches]
-# Add control and provisioning switches here if required.
+ethsw-dell-6224-1
 
 [hs-switches]
 # Add high speed switches here if required.

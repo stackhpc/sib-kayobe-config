@@ -1,0 +1,17 @@
+---
+###############################################################################
+# Network interface definitions for the compute group.
+
+# Overcloud provisioning network interface.
+oc_provision_interface: breno1
+
+# Overcloud provisioning network tagged bridge ports.
+oc_provision_bridge_ports:
+  - eno1
+
+# Internal network interface.
+internal_interface: "{{ oc_provision_interface }}.{{ internal_vlan }}"
+
+# Storage network interface.
+storage_interface: "{{ oc_provision_interface }}.{{ storage_vlan }}"
+

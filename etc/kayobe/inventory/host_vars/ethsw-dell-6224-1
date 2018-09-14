@@ -1,0 +1,104 @@
+---
+# Switch configuration for ethsw-dell-6224-1.
+
+# This switch is a 1G Dell PowerConnect 6224. It is currently used for all
+# the overcloud networks.
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.12.2.253
+
+# The type of switch used for the management network.
+switch_type: dell-powerconnect
+
+###############################################################################
+# Global configuration.
+
+# Global configuration. List of global configuration lines.
+switch_config: "{{ switch_config_all }}"
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and a 'config' item which should
+# contain a list of per-interface configuration.
+switch_interface_config:
+  'ethernet 1/g1':
+    description: compute-0
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g2':
+    description: compute-1
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g3':
+    description: compute-2
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g4':
+    description: compute-3
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g5':
+    description: compute-4
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g6':
+    description: compute-5
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g7':
+    description: compute-6
+    config: "{{ switch_interface_config_bm_compute }}"
+  'ethernet 1/g8':
+    description: compute-7
+    config: "{{ switch_interface_config_bm_compute }}"
+
+  'ethernet 1/g17':
+    description: powerconnect-2884
+    config: "{{ switch_interface_config_trunk_bmcs }}"
+  'ethernet 1/g18':
+    description: control-0
+    config: "{{ switch_interface_config_controller }}"
+  'ethernet 1/g19':
+    description: hypervisor-0
+    config: "{{ switch_interface_config_vm_compute }}"
+  'ethernet 1/g20':
+    description: ceph-0
+    config: "{{ switch_interface_config_ceph }}"
+  'ethernet 1/g21':
+    description: ceph-1
+    config: "{{ switch_interface_config_ceph }}"
+  'ethernet 1/g22':
+    description: ceph-2
+    config: "{{ switch_interface_config_ceph }}"
+  # NOTE: the seed node accesses the BMCs from across this link
+  'ethernet 1/g24':
+    description: swgenebio
+    config: "{{ switch_interface_config_trunk_ext }}"
+
+# Interface configuration for hardware discovery. After discovery Neutron owns
+# the configuration of these ports. Has the same format as
+# switch_interface_config.
+switch_interface_config_discovery:
+  'ethernet 1/g1':
+    description: compute-0
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g2':
+    description: compute-1
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g3':
+    description: compute-2
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g4':
+    description: compute-3
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g5':
+    description: compute-4
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g6':
+    description: compute-5
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g7':
+    description: compute-6
+    config: "{{ switch_interface_config_bm_compute_discovery }}"
+  'ethernet 1/g8':
+    description: compute-7
+    config: "{{ switch_interface_config_bm_compute_discovery }}"

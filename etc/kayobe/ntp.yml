@@ -6,12 +6,15 @@
 
 # Name of the local timezone.
 #timezone:
+timezone: Europe/Zurich
 
 ###############################################################################
 # Network Time Protocol (NTP).
 
 # List of names of NTP servers.
 #ntp_config_server:
+ntp_config_server:
+  - 10.0.16.2
 
 # List of NTP restrictions to add to ntp.conf.
 #ntp_config_restrict:

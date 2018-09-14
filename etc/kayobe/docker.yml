@@ -5,6 +5,7 @@
 # Name of the docker storage driver. Supported values include 'devicemapper'
 # and 'overlay'.
 #docker_storage_driver:
+docker_storage_driver: overlay
 
 # Name of the docker storage LVM volume group.
 #docker_storage_volume_group:
@@ -24,6 +25,9 @@
 
 # URL of docker registry
 #docker_registry:
+# This a private docker registry running on the seed, accessed via overcloud
+# provisioning network.
+docker_registry: "10.12.3.2:5000"
 
 # CA of docker registry
 #docker_registry_ca:
