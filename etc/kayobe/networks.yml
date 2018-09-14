@@ -99,10 +99,10 @@ wl_provision_physical_network: "{{ sib_ctl_physical_network }}"
 internal_cidr: 10.12.4.0/24
 # Pool for use by kayobe.
 internal_allocation_pool_start: 10.12.4.2
-internal_allocation_pool_end: 10.12.4.254
+internal_allocation_pool_end: 10.12.4.253
 internal_vlan: 74
 # VIP address for internal API endpoints.
-internal_vip_address: 10.12.4.1
+internal_vip_address: 10.12.4.254
 internal_physical_network: "{{ sib_ctl_physical_network }}"
 
 # Storage network IP information.
@@ -128,8 +128,8 @@ public_allocation_pool_start: 10.12.9.2
 public_allocation_pool_end: 10.12.9.9
 # Pool for use by neutron
 public_neutron_allocation_pool_start: 10.12.9.10
-public_neutron_allocation_pool_end: 10.12.9.254
-public_vip_address: 10.12.9.1
+public_neutron_allocation_pool_end: 10.12.9.253
+public_vip_address: 10.12.9.254
 public_vlan: 79
 public_physical_network: "{{ sib_ctl_physical_network }}"
 
