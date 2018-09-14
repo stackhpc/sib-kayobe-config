@@ -62,19 +62,19 @@ storage_lvm_groups:
     create: true
     lvnames: 
       - lvname: ceph-db-0
-        size: 120G
+        size: 111G
         create: true
         mount: false
       - lvname: ceph-db-1
-        size: 120G
+        size: 111G
         create: true
         mount: false
       - lvname: ceph-db-2
-        size: 120G
+        size: 111G
         create: true
         mount: false
       - lvname: ceph-db-3
-        size: 120G
+        size: 111G
         create: true
         mount: false
   - vgname: ceph-data
@@ -86,19 +86,19 @@ storage_lvm_groups:
     create: true
     lvnames:
       - lvname: ceph-data-0
-        size: 4000G
+        size: 3720G
         create: true
         mount: false
       - lvname: ceph-data-1
-        size: 4000G
+        size: 3720G
         create: true
         mount: false
       - lvname: ceph-data-2
-        size: 4000G
+        size: 3720G
         create: true
         mount: false
       - lvname: ceph-data-3
-        size: 4000G
+        size: 3720G
         create: true
         mount: false
 
