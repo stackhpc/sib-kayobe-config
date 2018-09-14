@@ -14,3 +14,8 @@
 # - Deletion of ports.
 haproxy_client_timeout: 5m30
 haproxy_server_timeout: 5m30
+
+# Support for external Ceph, deployed using ceph-ansible
+enable_ceph: "no"
+glance_backend_ceph: "yes"
+cinder_backend_ceph: "yes"
