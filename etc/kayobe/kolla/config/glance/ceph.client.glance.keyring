@@ -1,2 +1,2 @@
-client.glance
-	key: {{ secrets_ceph_client_glance }}
+[client.glance]
+key = {{ secrets_ceph_client_glance }}

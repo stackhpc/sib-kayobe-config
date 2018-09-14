@@ -1,2 +1,2 @@
-client.cinder
-	key: {{ secrets_ceph_client_cinder }}
+[client.cinder]
+key = {{ secrets_ceph_client_cinder }}
