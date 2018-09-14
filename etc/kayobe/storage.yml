@@ -56,15 +56,51 @@ storage_bootstrap_user: centos
 # format.
 #storage_lvm_groups:
 storage_lvm_groups: 
-  - vgname: ceph
+  - vgname: ceph-db
     disks:
-      - /dev/sdb
-      - /dev/sdc
+      - /dev/sdb            # 480G SSD
+    create: true
+    lvnames: 
+      - lvname: ceph-db-0
+        size: 120G
+        create: true
+        mount: false
+      - lvname: ceph-db-1
+        size: 120G
+        create: true
+        mount: false
+      - lvname: ceph-db-2
+        size: 120G
+        create: true
+        mount: false
+      - lvname: ceph-db-3
+        size: 120G
+        create: true
+        mount: false
+  - vgname: ceph-data
+    disks:
+      - /dev/sdc            # 4x 4000G HDDs
       - /dev/sdd
       - /dev/sde
       - /dev/sdf
     create: true
-    lvnames: []
+    lvnames:
+      - lvname: ceph-data-0
+        size: 4000G
+        create: true
+        mount: false
+      - lvname: ceph-data-1
+        size: 4000G
+        create: true
+        mount: false
+      - lvname: ceph-data-2
+        size: 4000G
+        create: true
+        mount: false
+      - lvname: ceph-data-3
+        size: 4000G
+        create: true
+        mount: false
 
 # Default list of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.
