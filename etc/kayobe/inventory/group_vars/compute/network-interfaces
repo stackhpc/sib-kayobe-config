@@ -3,11 +3,11 @@
 # Network interface definitions for the compute group.
 
 # Overcloud provisioning network interface.
-oc_provision_interface: breno1
+oc_provision_interface: brem3
 
 # Overcloud provisioning network tagged bridge ports.
 oc_provision_bridge_ports:
-  - eno1
+  - em3
 
 # Internal network interface.
 internal_interface: "{{ oc_provision_interface }}.{{ internal_vlan }}"
