@@ -71,7 +71,7 @@ kolla_docker_namespace: sib
 #kolla_docker_registry_password:
 
 # Kolla OpenStack release version. This should be a Docker image tag.
-kolla_openstack_release: 5.0.3.3-2
+kolla_openstack_release: 5.0.3.3-3
 
 # Dict mapping names of sources to their definitions for
 # kolla_install_type=source. See kolla.common.config for details.
