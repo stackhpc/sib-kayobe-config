@@ -122,7 +122,7 @@ switch_interface_config_trunk_ext:
   - "switchport mode trunk"
   - "switchport trunk allowed vlan add {{ oc_oob_vlan }}"
   - "switchport trunk allowed vlan add {{ oc_provision_vlan }}"
-  - "switchport trunk allowed vlan add {{ public_vlan }} tagged"
+  - "switchport trunk allowed vlan add {{ public_vlan }}"
 
 # Interface config for virtualised compute hypervisors.
 switch_interface_config_vm_compute:
