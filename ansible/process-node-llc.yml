@@ -1,0 +1,31 @@
+---
+
+- name: Get local link connection info
+  command: >
+    {{ venv }}/bin/openstack baremetal port list --node {{ item.UUID }} --fields uuid local_link_connection -f json
+  delegate_to: "{{ controller_host }}"
+  environment: "{{ openstack_auth_env }}"
+  vars:
+    # NOTE: Without this, the controller's ansible_host variable will not
+    # be respected when using delegate_to.
+    ansible_host: "{{ hostvars[controller_host].ansible_host | default(controller_host) }}"
+  register: llc
+
+# FIXME: we only look at first item
+
+- name: Set new link connection info
+  vars:
+    port_id: "{{ (llc.stdout | from_json) [0]['Local Link Connection']['port_id'].split('/') }}"
+    uuid: "{{ (llc.stdout | from_json) [0]['UUID'] }}"  
+  command: >
+    {{ venv }}/bin/openstack baremetal port set {{ uuid }} --local-link-connection port_id="ethernet 1/g{{ port_id[2] }}"
+  delegate_to: "{{ controller_host }}"
+  environment: "{{ openstack_auth_env }}"
+  vars:
+    # NOTE: Without this, the controller's ansible_host variable will not
+    # be respected when using delegate_to.
+    ansible_host: "{{ hostvars[controller_host].ansible_host | default(controller_host) }}"
+    port_id: "{{ (llc.stdout | from_json) [0]['Local Link Connection']['port_id'].split('/') }}"
+    uuid: "{{ (llc.stdout | from_json) [0]['UUID'] }}"  
+  when: port_id | length == 3
+

@@ -1,0 +1,38 @@
+---
+# Fixes for LLDP provided port_id from 1/0/1 to 1/g1
+
+- name: LLDP fixup
+  hosts: controllers[0]
+  gather_facts: False
+  vars:
+    venv: "{{ virtualenv_path }}/openstack-cli"
+  pre_tasks:
+    - name: Set up openstack cli virtualenv
+      pip:
+        virtualenv: "{{ venv }}"
+        name:
+          - python-openstackclient
+          - python-ironicclient
+
+- name: LLDP fixup
+  hosts: baremetal-compute
+  gather_facts: False
+  vars:
+    venv: "{{ virtualenv_path }}/openstack-cli"
+    controller_host: "{{ groups['controllers'][0] }}"
+  tasks:
+    - name: Get list of nodes
+      command: >
+        {{ venv }}/bin/openstack baremetal node list -f json --fields uuid name driver_info
+      register: nodes
+      delegate_to: "{{ controller_host }}"
+      environment: "{{ openstack_auth_env }}"
+      run_once: true
+      changed_when: false
+      vars:
+        # NOTE: Without this, the controller's ansible_host variable will not
+        # be respected when using delegate_to.
+        ansible_host: "{{ hostvars[controller_host].ansible_host | default(controller_host) }}"
+    - include: process-node-llc.yml
+      with_items: "{{ nodes.stdout | from_json }}"
+      run_once: true
