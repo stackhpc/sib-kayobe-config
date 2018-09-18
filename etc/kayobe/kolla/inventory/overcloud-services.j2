@@ -74,15 +74,6 @@ neutron
 neutron
 
 # Ceph
-[ceph-mds:children]
-ceph
-
-[ceph-mgr:children]
-ceph
-
-[ceph-nfs:children]
-ceph
-
 [ceph-mon:children]
 ceph
 
@@ -216,6 +207,9 @@ ironic
 [ironic-pxe:children]
 ironic
 
+[ironic-ipxe:children]
+ironic
+
 # Magnum
 [magnum-api:children]
 magnum
@@ -254,10 +248,16 @@ mistral
 mistral
 
 # Ceilometer
+[ceilometer-api:children]
+ceilometer
+
 [ceilometer-central:children]
 ceilometer
 
 [ceilometer-notification:children]
+ceilometer
+
+[ceilometer-collector:children]
 ceilometer
 
 [ceilometer-compute:children]
@@ -358,11 +358,8 @@ designate
 [designate-central:children]
 designate
 
-[designate-producer:children]
-designate
-
 [designate-mdns:children]
-network
+designate
 
 [designate-worker:children]
 designate
@@ -391,33 +388,3 @@ skydive
 [skydive-agent:children]
 compute
 network
-
-# Tacker
-[tacker-server:children]
-tacker
-
-[tacker-conductor:children]
-tacker
-
-# Vitrage
-[vitrage-api:children]
-vitrage
-
-[vitrage-notifier:children]
-vitrage
-
-[vitrage-graph:children]
-vitrage
-
-[vitrage-collector:children]
-vitrage
-
-[vitrage-ml:children]
-vitrage
-
-# Blazar
-[blazar-api:children]
-blazar
-
-[blazar-manager:children]
-blazar
