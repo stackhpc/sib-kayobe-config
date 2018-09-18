@@ -5,6 +5,7 @@ internal_ips:
   control-0: 10.12.4.3
   hypervisor-0: 10.12.4.4
 oc_oob_ips:
+  control-0: 10.12.2.127
   sib-seed: 10.12.2.2
 oc_provision_ips:
   ceph-0: 10.12.3.5
@@ -33,4 +34,3 @@ wl_oob_ips:
   control-0: 10.12.7.3
 wl_provision_ips:
   control-0: 10.12.8.3
-

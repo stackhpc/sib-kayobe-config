@@ -72,6 +72,8 @@ oc_provision_gateway: 10.12.3.1
 oc_oob_cidr: 10.12.2.0/24
 oc_oob_vlan: 72
 oc_oob_physical_network: "{{ sib_mgmt_physical_network }}"
+oc_oob_allocation_pool_start: 10.12.2.127
+oc_oob_allocation_pool_end: 10.12.2.200
 
 # Workload out of band power/management network IP information.
 wl_oob_cidr: 10.12.7.0/24

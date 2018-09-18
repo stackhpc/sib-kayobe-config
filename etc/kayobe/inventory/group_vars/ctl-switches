@@ -76,6 +76,7 @@ switch_interface_config_controller:
   - "switchport general allowed vlan add {{ oc_provision_vlan }} untagged"
   # Current expect-based configuration mechanism requires no line wrapping, so
   # VLANs must be configured individually.
+  - "switchport general allowed vlan add {{ oc_oob_vlan }} tagged"
   - "switchport general allowed vlan add {{ wl_oob_vlan }} tagged"
   - "switchport general allowed vlan add {{ wl_provision_vlan }} tagged"
   - "switchport general allowed vlan add {{ public_vlan }} tagged"

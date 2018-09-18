@@ -9,6 +9,10 @@ oc_provision_interface: brem3
 oc_provision_bridge_ports:
   - em3
 
+# Overcloud OOB network interface. This is to access the Dell PowerConnect
+# Switch.
+oc_oob_interface: "{{ oc_provision_interface }}.{{ oc_oob_vlan }}"
+
 # Workload OOB network interface.
 wl_oob_interface: "{{ oc_provision_interface }}.{{ wl_oob_vlan }}"
 

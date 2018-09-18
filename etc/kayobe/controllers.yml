@@ -18,6 +18,7 @@ controller_bootstrap_user: centos
 # Modify the default list of networks to remove storage management.
 controller_default_network_interfaces: >
   {{ [provision_oc_net_name,
+      oob_oc_net_name,
       oob_wl_net_name,
       provision_wl_net_name,
       internal_net_name,
