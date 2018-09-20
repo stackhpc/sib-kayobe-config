@@ -1,7 +1,6 @@
 ---
-# This playbook will ensure that all baremetal compute nodes are named after
-# their inventory host names. It matches the ipmi address in the inventory to
-# the one gathered from inspection
+# This playbook will ensure that all baremetal compute nodes have
+# the baremetal-A resource class set.
 
 - name: Set baremetal compute nodes resource class
   hosts: controllers[0]
