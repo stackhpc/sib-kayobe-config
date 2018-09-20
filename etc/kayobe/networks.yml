@@ -84,7 +84,7 @@ wl_oob_physical_network: "{{ sib_mgmt_physical_network }}"
 # Workload provisioning network IP information.
 wl_provision_cidr: 10.12.8.0/24
 # Pool for use by kayobe.
-wl_provision_allocation_pool_start: 10.12.8.2
+wl_provision_allocation_pool_start: 10.12.8.3
 wl_provision_allocation_pool_end: 10.12.8.9
 # Pool for use by ironic inspector during hardware inspection.
 wl_provision_inspection_allocation_pool_start: 10.12.8.10
