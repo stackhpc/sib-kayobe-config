@@ -1,10 +1,12 @@
 # List of IP routing tables. Each item should be a dict containing 'id' and
 # 'name' items. These tables will be added to /etc/iproute2/rt_tables.
 network_route_tables:
-  # IP routing table for traffic orginating from the public network. Because of
-  # the asymmetric routing in the system, we use policy-based routing to route
-  # based on the source address and the destination address for the public
-  # network.
+  # IP routing table for traffic routed from our public IP. We want to allow
+  # communication between the seed and the controller. In this specific case, 
+  # the traffic from sib-seed is originating from 10.12.3.2 and is routed to 
+  # 10.12.9.254. Our response, from 10.12.9.254, needs to be routed via 10.12.9.1 
+  # We use policy-based routing to route based on the source address and the 
+  # destination address for the public network.
   - name: public
     id: 1
 
