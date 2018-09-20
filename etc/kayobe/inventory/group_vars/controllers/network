@@ -1,0 +1,30 @@
+# List of IP routing tables. Each item should be a dict containing 'id' and
+# 'name' items. These tables will be added to /etc/iproute2/rt_tables.
+network_route_tables:
+  # IP routing table for traffic routed from our public IP. We want to allow
+  # communication between the seed and the controller. In this specific case, 
+  # the traffic from sib-seed is originating from 10.12.3.2 and is routed to 
+  # 10.12.9.254. Our response, from 10.12.9.254, needs to be routed via 10.12.9.1 
+  # We use policy-based routing to route based on the source address and the 
+  # destination address for the public network.
+  - name: public
+    id: 1
+
+# Public network IP routing rules.
+public_rules:
+  # Use the public routing table for all traffic originating from the public
+  # network.
+  - "from {{ public_cidr }} table public"
+
+# Public network static IP routes.
+public_routes:
+  # Default route via the firewall's public network interface, added to the
+  # public routing table.
+  - cidr: "0.0.0.0/0"
+    gateway: "10.12.9.1"
+    table: public
+  # 'Connected' route for the public network subnet via the public network
+  # interface. Connected routes are not added automatically in custom routing
+  # tables.
+  - cidr: "{{ public_cidr }}"
+    table: public
