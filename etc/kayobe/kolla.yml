@@ -175,7 +175,7 @@ kolla_overcloud_inventory_storage_groups: []
 #kolla_enable_central_logging:
 #kolla_enable_ceph:
 #kolla_enable_ceph_rgw:
-kolla_enable_cinder: True
+#kolla_enable_cinder: True
 #kolla_enable_cinder_backend_hnas_iscsi:
 #kolla_enable_cinder_backend_hnas_nfs:
 #kolla_enable_cinder_backend_iscsi:
