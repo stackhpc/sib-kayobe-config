@@ -86,7 +86,7 @@ wl_oob_physical_network: "{{ sib_mgmt_physical_network }}"
 # Workload provisioning network IP information.
 wl_provision_cidr: 10.12.8.0/24
 # Pool for use by kayobe.
-wl_provision_allocation_pool_start: 10.12.8.2
+wl_provision_allocation_pool_start: 10.12.8.3
 wl_provision_allocation_pool_end: 10.12.8.9
 # Pool for use by ironic inspector during hardware inspection.
 wl_provision_inspection_allocation_pool_start: 10.12.8.10
@@ -96,16 +96,18 @@ wl_provision_neutron_allocation_pool_start: 10.12.8.128
 wl_provision_neutron_allocation_pool_end: 10.12.8.254
 wl_provision_vlan: 78
 wl_provision_physical_network: "{{ sib_ctl_physical_network }}"
+wl_provision_neutron_gateway: 10.12.8.2
 
 # Internal network IP information.
 internal_cidr: 10.12.4.0/24
 # Pool for use by kayobe.
-internal_allocation_pool_start: 10.12.4.2
+internal_allocation_pool_start: 10.12.4.3
 internal_allocation_pool_end: 10.12.4.253
 internal_vlan: 74
 # VIP address for internal API endpoints.
 internal_vip_address: 10.12.4.254
 internal_physical_network: "{{ sib_ctl_physical_network }}"
+internal_wl_provision_gateway: 10.12.4.2
 
 # Storage network IP information.
 storage_cidr: 10.12.5.0/24
