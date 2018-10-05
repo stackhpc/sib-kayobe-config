@@ -1,0 +1,5 @@
+---
+
+# Workaround issue with DIB failing in docker container due to bad commit
+# See, https://storyboard.openstack.org/#!/story/2003709
+dib_git_branch: 2.16.0
